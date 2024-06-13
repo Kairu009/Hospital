@@ -17,7 +17,7 @@ export default {
   },
   components: {
     HeaderPage,
-    Sidebar
+    Sidebar,
   },
 };
 </script>

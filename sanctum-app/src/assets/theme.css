@@ -50,7 +50,8 @@ img {
   display: block;
 }
 
-p {
+p,
+small {
   font-family: "Poppins", sans-serif;
   line-height: 2em;
   margin: 0;

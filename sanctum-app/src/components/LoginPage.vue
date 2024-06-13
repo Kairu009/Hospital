@@ -3,11 +3,19 @@
     <div class="wrapper">
       <div class="login-container">
         <div class="login-details">
-          <h1 class="a-title">Cabuyao City Hospital</h1>
+          <h1>Hospital <span>Management</span> System</h1>
+          <i
+            ><p>
+              Join healthcare <span> professionals </span> on this platform.
+            </p></i
+          >
         </div>
         <form @submit.prevent="loginUser">
+          <div class="header-text mb-3">
+            <h2>Welcome back!</h2>
+            <p>We are happy to have you back.</p>
+          </div>
           <div class="field-con">
-            <h1>Login</h1>
             <input
               type="email"
               class="form-control"
@@ -31,8 +39,14 @@
               required
             />
           </div>
+          <div class="row">
+            <small
+              >Don't have an account?
+              <a href="" @click.prevent="navigateToRegister">SignUp</a></small
+            >
+          </div>
           <div class="btn-con">
-            <button type="submit" class="btn btn-success">LOGIN</button>
+            <button type="submit" class="btn-primary">LOGIN</button>
           </div>
         </form>
       </div>
@@ -51,6 +65,9 @@ export default {
     };
   },
   methods: {
+    navigateToRegister() {
+      this.$router.push({ path: "/register" });
+    },
     async loginUser() {
       try {
         const response = await axios.post(this.$store.state.apiUrl + "/login", {
@@ -79,17 +96,16 @@ export default {
 </script>
 
 <style scoped>
-#a-title {
-  color: yellow;
+.header-text h2 {
+  font-size: 40 px;
+  color: var(--global-color-secondary);
 }
+
 #login {
   height: 100vh;
   position: relative;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #login::before {
@@ -99,10 +115,8 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../assets/Background.jpg");
-  background-size: cover;
+
   background-position: center;
-  z-index: -2;
 }
 
 #login::after {
@@ -112,7 +126,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--global-color-black);
   z-index: -1;
 }
 
@@ -123,18 +137,13 @@ export default {
 
 #login .wrapper {
   max-width: 1440px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #login .login-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  gap: 100px;
   align-items: center;
-  text-align: center;
-  gap: 20px;
 }
 
 #login .login-details {
@@ -148,7 +157,11 @@ export default {
 }
 
 #login .login-details h1 span {
-  color: var(--global-color-primary);
+  color: var(--global-color-secondary);
+}
+
+#login .login-details p span {
+  color: var(--global-color-secondary);
 }
 
 #login .login-container form {
@@ -157,36 +170,47 @@ export default {
   padding: 20px;
   background: var(--global-color-white);
   box-shadow: var(--global-shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-radius: 5px;
 }
 
-.field-con {
-  width: 100%;
-  text-align: center;
+.btn-primary {
+  border-radius: 50px;
+  background-color: #6366f1; /* Primary violet color */
+  transition: background 0.3s ease; /* Smooth transition for the hover effect */
 }
 
-.btn-con {
-  width: 100%;
-  text-align: center;
+.btn-primary:hover {
+  background: linear-gradient(
+    to right,
+    #6366f1,
+    /* Base violet color */ #4f46e5,
+    /* Darker violet */ #7c3aed /* Another shade of violet */
+  );
 }
 
 @media screen and (max-width: 767px) {
   #login .login-container {
     padding: 100px 0;
+    text-align: center;
+    gap: 50px;
+    flex-direction: column;
   }
 }
 
 @media screen and (min-width: 768px) {
   #login .login-container {
     padding: 100px 0;
+    text-align: center;
+    gap: 50px;
+    flex-direction: column;
   }
 }
 
 @media screen and (min-width: 1024px) {
   #login .login-container {
+    flex-direction: row;
     padding: 200px 0;
+    text-align: left;
   }
 }
 </style>
